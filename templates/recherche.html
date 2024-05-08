@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Recherche de documents</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style4.css') }}">
+
+</head>
+<body>
+    <div class="banner" >
+        <div class="navbar">
+            <img src="{{ url_for('static', filename='logoo.png') }}" alt="Mon image" height="50" width="50">
+            <ul>
+                <li><a href="{{ url_for('index') }}">Accueil</a></li>
+                <li><a href="{{ url_for('classification') }}">Classification</a></li>
+                <li><a href="{{ url_for('documents') }}">Documents</a></li>
+                <li><a href="{{ url_for('recherche') }}">Recherche</a></li>
+                <li><a href="{{ url_for('apropos') }}">A propos</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+
+           <div style="display: flex; flex-direction: column; align-items: center;">
+    <h1 style="font-size: 2.5rem; color: #009688; margin-bottom: 2rem;">Recherche de documents</h1>
+    <form action="/recherche" method="GET" style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+        <label for="query" style="font-size: 1.2rem; color: #555;">Entrez le nom du document :</label>
+        <div style="display: flex; gap: 0.5rem;">
+            <input type="text" id="query" name="query" style="font-size: 1rem; padding: 0.5rem 1rem; border-radius: 4px; border: 1px solid #ccc; max-width: 500px;" placeholder="Rechercher...">
+            <button type="submit" style="background-color: #009688; color: #fff; font-size: 1rem; padding: 0.5rem 1rem; border: none; border-radius: 4px; cursor: pointer;">Rechercher</button>
+        </div>
+    </form>
+    {% if message %}
+        <p style="font-size: 1.2rem; margin-top: 2rem;">{{ message }}</p>
+    {% endif %}
+    {% if results %}
+        <ul style="max-width: 800px; margin: 2rem auto 0;">
+            {% for result in results %}
+                <li><a href="{{ result }}">{{ result }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+     </div>
+    </div>
+</body>
+</html>

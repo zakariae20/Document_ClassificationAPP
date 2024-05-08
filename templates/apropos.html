@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="UTF-8">
+	<title>My application</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style5.css') }}">
+</head>
+<body>
+	<div class="banner">
+		<div class="navbar">
+			<img src="{{ url_for('static', filename='logoo.png') }}" alt="Mon image" height="50" width="50">
+			<ul>
+				<li><a href="{{ url_for('index') }}">Accueil</a></li>
+				<li><a href="{{ url_for('classification') }}">Classification</a></li>
+				<li><a href="{{ url_for('documents') }}">Documents</a></li>
+				<li><a href="{{ url_for('recherche') }}">Recherche</a></li>
+				<li><a href="#">A propos</a></li>
+			</ul>
+		</div>
+
+		<div class="content">
+			<h1 style="color: #009688">À propos de mon application</h1><br>
+			<br>
+            <p>Cette application a été créée pour classer des fichiers PDF en fonction de leur contenu.</p><br>
+            <p>Elle a été développée par BENZOUITINE Zakariae en utilisant Flask et Python.</p>
+
+		</div>
+	</div>
+</body>
+</html>

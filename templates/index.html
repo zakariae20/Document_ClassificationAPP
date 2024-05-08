@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style1.css') }}">
+	<meta charset="UTF-8">
+	<title>My application</title>
+</head>
+<body>
+	<div class="banner">
+		<div class="navbar">
+			<img src="{{ url_for('static', filename='logoo.png') }}" alt="Mon image" height="50" width="50">
+			<ul>
+				<li><a href="{{ url_for('index') }}">Accueil</a></li>
+				<li><a href="{{ url_for('classification') }}">Classification</a></li>
+				<li><a href="{{ url_for('documents') }}">Documents</a></li>
+				<li><a href="{{ url_for('recherche') }}">Recherche</a></li>
+				<li><a href="{{ url_for('apropos') }}">A propos</a></li>
+			</ul>
+		</div>
+		</div>
+		<div class="content">
+			<h1 style="color: #2EBEB4">CLASSIFICATION DE DOCUMENTS</h1>
+			<p>Classifiez rapidement et efficacement vos documents PDF en quelques cliques grâce à<br> notre application de classification de documents.</p>
+
+			<div>
+				<form action="/" method="POST" enctype="multipart/form-data">
+					<input type="file" name="file" id="file" multiple>
+					<input type="submit" value="Classer les documents">
+				</form>
+			</div>
+		</div>
+				{% if flash_message %}
+				<div class="alert alert-warning" role="alert">
+					{{ flash_message }}
+				</div>
+				{% endif %}
+	</div>
+</body>
+<script>
+  $('form').submit(function() {
+  var fileInput = $('input[type="file"]');
+  if (!fileInput.val()) {
+    alert('Veuillez sélectionner un fichier PDF.');
+    return false;
+  }
+  var files = fileInput[0].files;
+  for (var i = 0; i < files.length; i++) {
+    var file = files[i];
+    if (!file.name.endsWith('.pdf')) {
+      alert('Le fichier sélectionné "' + file.name + '" n\'est pas un fichier PDF.');
+      return false;
+    }
+    if (file.type !== 'application/pdf') {
+      alert('Le fichier sélectionné "' + file.name + '" n\'est pas un fichier PDF.');
+      return false;
+    }
+  }
+});
+</script>
+
+</html>

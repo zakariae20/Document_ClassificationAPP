@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>My application</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style3.css') }}">
+</head>
+<body>
+	<div class="banner">
+		<div class="navbar">
+			<img src="{{ url_for('static', filename='logoo.png') }}" alt="Mon image" height="50" width="50">
+			<ul>
+				<li><a href="{{ url_for('index') }}">Accueil</a></li>
+				<li><a href="{{ url_for('classification') }}">Classification</a></li>
+				<li><a href="{{ url_for('documents') }}">Documents</a></li>
+				<li><a href="{{ url_for('recherche') }}">Recherche</a></li>
+				<li><a href="{{ url_for('apropos') }}">A propos</a></li>
+			</ul>
+		</div>
+		</div>
+		<div class="content">
+			<h1 style="color:#009688">Tous les documents:</h1>
+	{% for category, files in files.items() %}
+		<h2 style="color: #68D0C9">{{ categories[category] }}:</h2>
+		{% if files %}
+			<ul>
+				{% for file in files %}
+					<li>{{ file }}</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<p>Aucun document dans cette catégorie.</p>
+		{% endif %}
+	{% endfor %}
+
+		</div>
+	</div>
+</body>
+</html>
